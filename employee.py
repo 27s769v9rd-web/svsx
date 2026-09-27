@@ -1,4 +1,13 @@
-
+"""
+File: employee.py
+Description: Categorizes Employees
+Student Name: Jeff Zheng
+Student UT EID: jrz554
+Course Name: CS 313E
+Unique Number: 64150
+Date Created: 09/26/2026
+Date Last Modified: 09/26/2026
+"""
 
 class Employee:
     """Base Employee"""
