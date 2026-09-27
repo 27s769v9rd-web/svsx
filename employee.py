@@ -1,7 +1,7 @@
 
 
 class Employee:
-
+    """Base Employee"""
     def __init__(self, **kwargs):
         self.name = kwargs.get("name")
         self.identifier = kwargs.get("identifier")
@@ -15,7 +15,7 @@ class Employee:
 ############################################################
 
 class PermanentEmployee(Employee):
-
+    """An Employee with Benefits"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.benefits = kwargs.get("benefits", [])
@@ -38,6 +38,7 @@ class PermanentEmployee(Employee):
 ############################################################
 
 class Manager(Employee):
+    """An Employee with a Bonus"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.bonus = kwargs.get("bonus", 0)
@@ -56,6 +57,7 @@ class Manager(Employee):
 ############################################################
 ############################################################
 class TemporaryEmployee(Employee):
+    """An Employee with Hours"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.hours = kwargs.get("hours", 0)
@@ -76,6 +78,7 @@ class TemporaryEmployee(Employee):
 
 
 class Consultant(TemporaryEmployee):
+    """An Temporary Employee that Travels"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.travel = kwargs.get("travel", 0)
@@ -91,6 +94,7 @@ class Consultant(TemporaryEmployee):
 
 
 class ConsultantManager(Consultant, Manager):
+    """A Consultant that gets a Bonus"""
     def __init__(self,  **kwargs):
         super().__init__(**kwargs)
     def cal_salary(self):
