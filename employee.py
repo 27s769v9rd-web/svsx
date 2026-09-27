@@ -24,9 +24,9 @@ class PermanentEmployee(Employee):
         """Calculates salary with benefits"""
         if "health_insurance" in self.benefits and "retirement" in self.benefits:
             return self.salary * 0.7
-        elif "health_insurance" in self.benefits:
+        if "health_insurance" in self.benefits:
             return self.salary * 0.9
-        elif "retirement" in self.benefits:
+        if "retirement" in self.benefits:
             return self.salary * 0.8
         return self.salary
 
@@ -47,8 +47,7 @@ class Manager(Employee):
         """Calculates Salary with Bonus"""
         if self.salary is not None:
             return self.salary + self.bonus
-        else:
-            return 0
+        return 0
     def __str__(self):
         return f"Manager\n{self.name}, {self.identifier}, {self.salary}, {self.bonus}"
 
@@ -65,8 +64,7 @@ class TemporaryEmployee(Employee):
         """Calculates Salary with temp hours"""
         if self.salary is not None:
             return self.salary * self.hours
-        else:
-            return 0
+        return 0
 
     def __str__(self):
         return f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}"
