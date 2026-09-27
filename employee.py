@@ -3,54 +3,71 @@
 class Employee:
 
     def __init__(self, **kwargs):
-    # Add your code here!
+        self.name = kwargs.get("name")
+        self.identifier = kwargs.get("identifier")
+        self.salary = kwargs.get("salary")
 
     def __str__(self):
-    # Add your code here!
-
+        return f"Employee\n{self.name}, {self.identifier}, {self.salary}"
 
 ############################################################
 ############################################################
 ############################################################
 
-class PermanentEmployee:
+class PermanentEmployee(Employee):
 
     def __init__(self, **kwargs):
-
+        super().__init__(**kwargs)
+        self.benefits = kwargs.get("benefits", [])
 
     def cal_salary(self):
-
+        if "health_insurance" in self.benefits and "retirement" in self.benefits:
+            return self.salary * 0.7
+        elif "health_insurance" in self.benefits:
+            return self.salary * 0.9
+        elif "retirement" in self.benefits:
+            return self.salary * 0.8
+        return self.salary
 
 
     def __str__(self):
-
+        return f"PermanentEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.benefits}"
 
 ############################################################
 ############################################################
 ############################################################
 
 class Manager :
-
-    
-    def cal_salary(self):
-
-
-    def __str__(self):
-
-
-
-############################################################
-############################################################
-############################################################
-class TemporaryEmployee:
     def __init__(self, **kwargs):
-        
+        super().__init__(**kwargs)
+        self.bonus = kwargs.get("bonus", 0)
     
     def cal_salary(self):
-        
+        if self.salary is not None:
+            return self.salary + self.bonus
+        else:
+            return 0
 
     def __str__(self):
-        
+        return f"Manager\n{self.name}, {self.identifier}, {self.salary}, {self.bonus}"
+
+
+############################################################
+############################################################
+############################################################
+class TemporaryEmployee(Employee):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.hours = kwargs.get("hours", 0)
+    
+    def cal_salary(self):
+        if self.salary is not None:
+            return self.salary * self.hours
+        else:
+            return 0
+
+    def __str__(self):
+        return f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}"
 
     
 ############################################################
@@ -58,27 +75,28 @@ class TemporaryEmployee:
 ############################################################
 
 
-class Consultant :
-  
+class Consultant(TemporaryEmployee):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.travel = kwargs.get("travel", 0)
 
     def cal_salary(self):
-  
+        return super().cal_salary() + (self.travel * 1000)
 
     def __str__(self):
-  
+        return f"Consultant\n{self.name}, {self.identifier}, {self.salary}, {self.hours}, {self.travel}"
 ############################################################
 ############################################################
 ############################################################
 
 
-class ConsultantManager:
+class ConsultantManager(Consultant, Manager):
     def __init__(self,  **kwargs):
- 
-
+        super().__init__(**kwargs)
     def cal_salary(self):
- 
+         return Consultant.cal_salary(self) + self.bonus
     def __str__(self):
- 
+        return f"ConsultantManager\n{self.name}, {self.identifier}, {self.salary}, {self.hours}, {self.travel}, {self.bonus}"
 
 
 ############################################################
