@@ -37,7 +37,7 @@ class PermanentEmployee(Employee):
 ############################################################
 ############################################################
 
-class Manager :
+class Manager(Employee):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.bonus = kwargs.get("bonus", 0)
