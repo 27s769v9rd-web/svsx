@@ -15,7 +15,9 @@ class Employee:
         self.name = kwargs.get("name")
         self.identifier = kwargs.get("identifier")
         self.salary = kwargs.get("salary")
-
+    def cal_salary(self):
+    """Return base salary"""
+        return self.salary
     def __str__(self):
         return f"Employee\n{self.name}, {self.identifier}, {self.salary}"
 
